@@ -1,0 +1,46 @@
+/*
+Q.3: Write a Java Program to count the number of words in a string using HashMap.
+*/
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class WordCount {
+    public static Map<String, Integer> countWords(String str) {
+        Map<String, Integer> wordCountMap = new HashMap<>();
+        
+                String[] words = str.split("\\s+");
+        
+                for (String word : words) {
+            word = word.replaceAll("[^a-zA-Z0-9]", "");
+            word = word.toLowerCase();
+            wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+        }
+        
+        return wordCountMap;
+    }
+    
+    public static void main(String[] args) {
+        String text = "Manifestation is real in this world";
+        
+        Map<String, Integer> wordCountMap = countWords(text);
+        
+        System.out.println("Word Counts:");
+        for (Map.Entry<String, Integer> entry : wordCountMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}
+
+/*
+ Output :-
+ 
+Word Counts:
+manifestation: 1
+is: 1
+real: 1
+in: 1
+this: 1
+world: 1
+
+ */
